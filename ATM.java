@@ -1,6 +1,5 @@
 package com.umesh;
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -86,21 +85,22 @@ public class ATM {
     }
 
     private static void login() {
-        System.out.print("Enter your name: ");
-        String name = scanner.nextLine();
-        System.out.print("Enter your PIN: ");
+        System.out.println("\n💳 Please insert your card to proceed...");
+
+        System.out.print("🔐 Enter your PIN: ");
         int pin = getIntInput();
+        scanner.nextLine(); // Clear newline
 
         for (BankAccount user : users) {
-            if (user.getName().equalsIgnoreCase(name) && user.authenticate(pin)) {
+            if (user.authenticate(pin)) {
                 currentUser = user;
-                System.out.println("✅ Welcome back, " + user.getName() + "!");
+                System.out.println("✅ Hello, " + user.getName() + "!");
                 showMenu();
                 return;
             }
         }
 
-        System.out.println("❌ Invalid name or PIN.");
+        System.out.println("❌ Invalid PIN.");
     }
 
     private static void createAccount() {
